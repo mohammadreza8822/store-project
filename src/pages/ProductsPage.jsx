@@ -1,9 +1,19 @@
-import React from "react";
+import { useProducts } from "../context/ProductContext";
+
+import styles from "./ProductsPage.module.css";
 
 function ProductsPage() {
+  const products = useProducts();
+
   return (
-    <div>
-      <h1>ProductsPage</h1>
+    <div className={styles.container}>
+      <div className={styles.products}>
+        {!products.length && <p>Loading...</p>}
+        {products.map((p) => (
+          <p key={p.id}>{p.title}</p>
+        ))}
+      </div>
+      <div>Sidebar</div>
     </div>
   );
 }
